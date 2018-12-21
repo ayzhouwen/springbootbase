@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- ojdbc的jar包 -->
+    <!--<classPathEntry-->
+            <!--location="D:\jar\mysql-connector-java-5.1.22.jar" />-->
+    <context id="my" targetRuntime="MyBatis3" defaultModelType="flat" >
+      <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+      <commentGenerator>
+            <property name="suppressDate" value="false" />
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!-- 数据库连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/im?useUnicode=true&amp;characterEncoding=utf8" userId="root"
+                        password="zw123456" />
+        <!-- model生成路径 -->
+        <javaModelGenerator targetPackage="com.example.im.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+      <!-- 映射xml文件生成路径 -->
+      <sqlMapGenerator targetPackage="mybatis/mapper"
+                       targetProject="src/main/resources">
+        <property name="enableSubPackages" value="true" />
+      </sqlMapGenerator>
+
+        <!-- 和xml文件关联的dao生成路径（生成文件名默认是***Mapper.java，习惯将其改名成 ***Dao.java） -->
+        <javaClientGenerator targetPackage="com.example.im.mapper"
+                             targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 目标表，如果有多个表就将此段拷贝分别配置 -->
+       <!--<table tableName="area" domainObjectName="AreaPO"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>-->
+      <!--<table tableName="t_charge_items"-->
+             <!--enableCountByExample="false" enableUpdateByExample="false"-->
+             <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+             <!--selectByExampleQueryId="false">-->
+      <!--</table>-->
+
+      <!--<table tableName="%" enableCountByExample="false" enableUpdateByExample="false"-->
+             <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+             <!--selectByExampleQueryId="false">-->
+        <!--&lt;!&ndash;<generatedKey column="id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;-->
+      <!--</table>-->
+
+    </context>
+</generatorConfiguration>

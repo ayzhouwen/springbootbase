@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.im.mapper.AppuserMapper" >
+  <resultMap id="BaseResultMap" type="com.example.im.entity.Appuser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head" property="head" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nick_name,  head
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from app_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.im.entity.Appuser" >
+    insert into app_user (nick_name,
+      head,create_time)
+    values ( #{nickName,jdbcType=VARCHAR},
+      #{head,jdbcType=VARCHAR},#{createTime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.im.entity.Appuser"   useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into app_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="head != null" >
+        head,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.im.entity.Appuser" >
+    update app_user
+    <set >
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        head = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        create_time = #{createTime},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.im.entity.Appuser" >
+    update app_user
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      head = #{head,jdbcType=VARCHAR},
+      create_time=#{createTime}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="slectInfo" parameterType="map" resultType="map">
+
+      select * from app_user where 1=1
+
+      and  id =#{id}
+
+
+  </select>
+</mapper>
